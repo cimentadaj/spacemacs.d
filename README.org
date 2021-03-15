@@ -3,5 +3,5 @@
 * Manual Installation
 
   #+BEGIN_SRC sh
-    git clone git@github.com:sei40kr/spacemacs.d.git ~/.spacemacs.d
+    git clone https://github.com/cimentadaj/spacemacs.d.git ~/.spacemacs.d
   #+END_SRC
