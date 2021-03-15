@@ -9,6 +9,7 @@
 
 (defun custom/projectile-init ()
   (setq projectile-git-submodule-command nil)
+  (spacemacs/set-leader-keys "ps" 'counsel-projectile-ag)
 
   (with-eval-after-load 'projectile
     (setq projectile-switch-project-action #'projectile-dired))
