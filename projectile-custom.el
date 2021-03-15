@@ -14,8 +14,6 @@
   (with-eval-after-load 'projectile
     (setq projectile-switch-project-action #'projectile-dired))
 
-  (projectile-discover-projects-in-directory "~/repositories/")
-
   (advice-add 'projectile-load-known-projects
               :override #'custom//magit-repos-to-projectile-projects)
   (advice-add 'projectile-remove-known-project

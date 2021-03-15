@@ -30,7 +30,7 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/.emacs.d/private/layers")
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/private/layers")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -51,7 +51,7 @@ values."
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-help-tooltip t)
+                      auto-completion-enable-help-tooltip nil)
      ;; helm
      ivy
      ;; Emacs
@@ -108,9 +108,6 @@ values."
      lua
      major-modes
      (markdown :variables markdown-live-preview-engine 'vmd)
-     perl5
-     perl6
-     php
      plantuml
      (python :variables
              python-backend 'lsp
@@ -164,10 +161,7 @@ values."
      (cmake :variables cmake-enable-cmake-ide-support t)
      dap
      (dash :variables
-           dash-autoload-common-docsets nil
-           helm-dash-docset-newpath (pcase system-type
-                                      ('darwin "~/Library/Application Support/Dash/DocSets")
-                                      ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")))
+           dash-autoload-common-docsets nil)
      (docker :variables
              docker-dockerfile-backend 'lsp)
      imenu-list
@@ -211,7 +205,6 @@ values."
    '(
      flycheck-popup-tip
      (helm-gitignore :location local)
-     (rails-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local)
      (jest-snippets :location local)
@@ -372,7 +365,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font `("Iosevka"
                                :size ,(pcase system-type
-                                        ('darwin 16.0)
+                                        ('darwin 13.0)
                                         ('gnu/linux 13.0))
                                :weight normal
                                :width normal)
@@ -484,12 +477,12 @@ It should only modify the values of Spacemacs settings."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 96
+   dotspacemacs-active-transparency 97
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 96
+   dotspacemacs-inactive-transparency 97
 
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
@@ -620,18 +613,19 @@ See the header of this file for more information."
                        "evil-custom"
                        "docsets"
                        "projectile-custom"
+                       "ess-custom"
                        "tabbar-custom"
                        "treemacs-custom"
                        "theme-custom"))
     (load (concat dotspacemacs-directory file-name))))
 
 (defun custom//require-all ()
-  (require 'rails-snippets)
-  (require 'react-snippets)
-  (require 'redux-snippets)
-  (require 'jest-snippets)
-  (require 'competitive-programming-snippets)
-  (require 'atcoder-tools))
+  ;; (require 'react-snippets)
+  ;; (require 'redux-snippets)
+  ;; (require 'jest-snippets)
+  ;; (require 'competitive-programming-snippets)
+  ;; (require 'atcoder-tools)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -686,9 +680,6 @@ $0")
       (add-to-list 'lsp-java-vmargs
                    (concat "-Xbootclasspath/a:" lombok-path)
                    'append)))
-
-
-  ;; ESS
 
   ;; Ruby
   (setq rubocopfmt-show-errors 'echo)
@@ -760,9 +751,6 @@ $0")
   ;; avy
   (setq avy-timeout-seconds 0.0)
 
-  ;; helm
-  ;; (setq helm-mini-default-sources '(helm-source-buffers-list))
-
   ;; UI Toggles
   (spacemacs/add-to-hooks #'spacemacs/toggle-fill-column-indicator-on
                           '(prog-mode-hook git-commit-mode-hook)))
@@ -773,7 +761,6 @@ This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
   (custom//require-all)
-
   (custom//load-all))
 
 (defun dotspacemacs/user-config ()
@@ -783,93 +770,14 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (custom//require-all)
+  (custom//load-all)
 
   (custom/evil-config)
   (custom/file-template-config)
   (custom/tabbar-config)
   (custom/treemacs-config)
   (custom/theme-config)
-
-  ;; Functions to run partial pipe
-  (defun pos-paragraph ()
-    (backward-paragraph)
-    (next-line 1)
-    (beginning-of-line)
-    (point))
-
-  (defun highlight-piped-region ()
-    (let ((end (point))
-          (beg (pos-paragraph)))
-      (set-mark beg)
-      (goto-char end)
-      (end-of-line)
-      (deactivate-mark)
-      (setq last-point (point))
-      (goto-char end)
-      (buffer-substring-no-properties beg last-point)))
-
-  (defun run-partial-pipe ()
-    (interactive)
-    (let ((string-to-execute (highlight-piped-region)))
-      ;; https://stackoverflow.com/questions/65882345/replace-last-occurence-of-regexp-in-a-string-which-has-new-lines-replace-regexp/65882683#65882683
-      (ess-eval-linewise
-       (replace-regexp-in-string
-        ".+<-" "" (replace-regexp-in-string
-                   "\\(\\(.\\|\n\\)*\\)\\(%>%\\|\+\\) *\\'" "\\1" string-to-execute)))))
-
-  (defun tide-insert-pipe ()
-    "Insert a %>% and newline"
-    (interactive)
-    (insert " %>% "))
-
-  (defun tide-insert-assign ()
-    "Insert an assignment <-"
-    (interactive)
-    (insert " <- "))
-
-  (defun ess-comint-clean-buffer ()
-    "Applies comint-clear-buffer to the inferior process
-       associated with a buffer. If you're in buffer '*a*' and run this,
-       it will switch to the associated inferior buffer apply
-       comint-clear-buffer and switch back to *a*"
-    (interactive)
-    (let ((first-buffer (current-buffer)))
-      (ess-switch-to-inferior-or-script-buffer t)
-      (comint-clear-buffer)
-      (switch-to-buffer-other-window first-buffer)))
-
-  (defun R-scratch ()
-    (interactive)
-    (progn
-      (delete-other-windows)
-      (setq new-buf (get-buffer-create "scratch.R"))
-      (switch-to-buffer new-buf)
-      (R-mode)
-      (setq w1 (selected-window))
-      (setq w1name (buffer-name))
-      (setq w2 (split-window w1 nil t))
-      (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
-          (R))
-      (set-window-buffer w2 "*R*")
-      (set-window-buffer w1 w1name)))
-
-  (defun tide-shiny-eval-app()
-    "Run a shiny app in the current working directory"
-    (interactive)
-    (ess-eval-linewise "shiny::runApp()"))
-
-  (with-eval-after-load 'ess-mode
-    (define-key ess-r-mode-map (kbd "C->") 'tide-insert-pipe)
-    (define-key ess-r-mode-map (kbd "C-<") 'tide-insert-assign)
-    (define-key inferior-ess-r-mode-map (kbd "C->") 'tide-insert-pipe)
-    (define-key inferior-ess-r-mode-map (kbd "C-<") 'tide-insert-assign))
-
-  (global-set-key (kbd "C-x 9") 'R-scratch)
-
-  (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "Ec" 'ess-comint-clean-buffer)
-  (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "sp" 'run-partial-pipe)
-  (spacemacs/declare-prefix-for-mode 'ess-r-mode "S" "Shiny")
-  (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "Se" 'tide-shiny-eval-app)
+  (custom/ess-config)
 
   ;; workaround for frame transparency
   (spacemacs/enable-transparency)
@@ -878,3 +786,23 @@ before packages are loaded."
 (setq custom-file (concat spacemacs-cache-directory ".custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-lintr-linters
+   "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(treemacs-root-face ((t (:inherit font-lock-string-face :weight bold :height 1.0)))))
+)
