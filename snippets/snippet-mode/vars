@@ -1,10 +1,10 @@
 # name : Snippet header
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# contributor : Jorge Cimentada <cimentadaj@gmail.com
 # key: vars
 # --
 
 # name : ${1:name}
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# contributor : Jorge Cimentada <cimentadaj@gmail.com>
 # key: ${2:key}
 # --
 $0

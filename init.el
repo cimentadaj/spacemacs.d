@@ -52,7 +52,8 @@ values."
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
-     helm
+     ;; helm
+     ivy
      ;; Emacs
      (org :variables
           org-want-todo-bindings t
@@ -69,8 +70,6 @@ values."
      (treemacs :variables
                treemacs-lock-width t)
      ;; Fun
-     ;; International support
-     japanese
      ;; Programming and markup languages
      (c-c++ :variables
             c-c++-backend 'lsp-clangd
@@ -129,7 +128,9 @@ values."
      (solidity :variables
                solidity-flycheck-solc-checker-active t
                solidity-flycheck-solium-checker-active t)
-     sql
+     (sql :variables
+          sql-backend 'lsp
+          sql-capitalize-keywords t)
      (typescript :variables
                  typescript-fmt-tool 'prettier
                  typescript-backend 'lsp
@@ -310,7 +311,7 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'vim
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -463,7 +464,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
 
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
@@ -523,7 +524,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers t
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -654,7 +655,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq yas-new-snippet-default "\
 # -*- mode: snippet -*-
 # name: $1
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# contributor : Jorge Cimentada <cimentadaj@gmail.com>
 # key: ${2:${1:$(yas--key-from-desc yas-text)}}
 # --
 
@@ -737,11 +738,29 @@ $0")
   (with-eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
     (remove-hook 'server-switch-hook 'magit-commit-diff))
+
   ;; allow to escape a key sequence with Esc
   (with-eval-after-load 'transient
     (define-key transient-map        (kbd "<escape>") #'transient-quit-one)
     (define-key transient-edit-map   (kbd "<escape>") #'transient-quit-one)
     (define-key transient-sticky-map (kbd "<escape>") #'transient-quit-seq))
+
+  ;; ESS
+  ;; (defun tide-insert-pipe ()
+  ;;   "Insert a %>% and newline"
+  ;;   (interactive)
+  ;;   (insert " %>% "))
+
+  ;; (defun tide-insert-assign ()
+  ;;   "Insert an assignment <-"
+  ;;   (interactive)
+  ;;   (insert " <- "))
+
+  ;; (with-eval-after-load 'ess
+  ;;   (define-key spacemacs-ess-r-map (kbd "C->") 'tide-insert-pipe)
+  ;;   (define-key spacemacs-ess-r-mode-map (kbd "C-<") 'tide-insert-assign)
+  ;;   (define-key spacemacs-inferior-ess-r-mode-map (kbd "C->") 'tide-insert-pipe)
+  ;;   (define-key spacemacs-inferior-ess-r-mode-map (kbd "C-<") 'tide-insert-assign))
 
   ;; Shell
   (setq terminal-here-terminal-command (pcase system-type
@@ -749,8 +768,8 @@ $0")
                                          ('gnu/linux '("alacritty"))))
 
   ;; Projectile
-  (setq helm-source-projectile-files-and-dired-list '(helm-source-projectile-files-list)
-        helm-source-projectile-directories-and-dired-list '(helm-source-projectile-directories-list))
+  ;; (setq helm-source-projectile-files-and-dired-list '(helm-source-projectile-files-list)
+  ;;       helm-source-projectile-directories-and-dired-list '(helm-source-projectile-directories-list))
 
   ;; Perspective
   (setq persp-kill-foreign-buffer-behaviour 'kill
@@ -760,7 +779,7 @@ $0")
   (setq avy-timeout-seconds 0.0)
 
   ;; helm
-  (setq helm-mini-default-sources '(helm-source-buffers-list))
+  ;; (setq helm-mini-default-sources '(helm-source-buffers-list))
 
   ;; UI Toggles
   (spacemacs/add-to-hooks #'spacemacs/toggle-fill-column-indicator-on

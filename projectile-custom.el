@@ -5,13 +5,15 @@
   (setq projectile-known-projects
         (append
          (mapcar #'abbreviate-file-name (magit-list-repos))
-         '("/ssh:dmz.yong-ju.me:~/my-cloud"))))
+         '("˜/repositories/"))))
 
 (defun custom/projectile-init ()
   (setq projectile-git-submodule-command nil)
 
   (with-eval-after-load 'projectile
     (setq projectile-switch-project-action #'projectile-dired))
+
+  (projectile-discover-projects-in-directory "~/repositories/")
 
   (advice-add 'projectile-load-known-projects
               :override #'custom//magit-repos-to-projectile-projects)
