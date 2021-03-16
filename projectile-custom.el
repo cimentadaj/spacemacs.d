@@ -5,7 +5,13 @@
   (setq projectile-known-projects
         (append
          (mapcar #'abbreviate-file-name (magit-list-repos))
-         '("˜/repositories/"))))
+         '("~/repositories/"))))
+
+(defun custom/projectile-config (args)
+   "Loads projectile config"
+   (interactive "P")
+   (projectile-discover-projects-in-directory "~/repositories")
+   )
 
 (defun custom/projectile-init ()
   (setq projectile-git-submodule-command nil)

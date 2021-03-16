@@ -778,6 +778,7 @@ before packages are loaded."
   (custom/treemacs-config)
   (custom/theme-config)
   (custom/ess-config)
+  (custom/projectile-config)
 
   ;; workaround for frame transparency
   (spacemacs/enable-transparency)
