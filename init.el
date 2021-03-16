@@ -644,7 +644,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; built-ins
   (setq create-lockfiles nil
-        select-enable-clipboard nil)
+        select-enable-clipboard t)
 
   ;; Auto-completion
   (setq yas-new-snippet-default "\
