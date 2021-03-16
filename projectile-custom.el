@@ -7,10 +7,9 @@
          (mapcar #'abbreviate-file-name (magit-list-repos))
          '("~/repositories/"))))
 
-(defun custom/projectile-config (args)
+(defun custom/projectile-config ()
    "Loads projectile config"
-   (interactive "P")
-   (projectile-discover-projects-in-directory "~/repositories")
+   (projectile-discover-projects-in-directory "~/repositories/")
    )
 
 (defun custom/projectile-init ()
