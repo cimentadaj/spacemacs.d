@@ -78,6 +78,8 @@
     (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "sp" 'run-partial-pipe)
     (spacemacs/declare-prefix-for-mode 'ess-r-mode "S" "Shiny")
     (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "Se" 'tide-shiny-eval-app)
+    (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "sh" 'ess-eval-buffer-from-beg-to-here)
+    (spacemacs/set-leader-keys-for-major-mode 'ess-r-mode "su" 'ess-eval-buffer-from-here-to-end)
     (global-set-key (kbd "C-x 9") 'R-scratch))
 
   )

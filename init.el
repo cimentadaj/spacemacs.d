@@ -111,6 +111,12 @@ values."
      plantuml
      (python :variables
              python-backend 'lsp
+             ;; python-tab-width 4
+             python-fill-column 99
+             python-formatter 'yapf
+             python-format-on-save t
+             python-sort-imports-on-save t
+             python-pipenv-activate t
              python-formatter 'black)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
@@ -173,6 +179,10 @@ values."
           lsp-ui-doc-enable nil
           lsp-ui-sideline-show-diagnostics nil)
      nginx
+     (conda :variables
+            conda-anaconda-home "~/opt/anaconda3/"
+            conda-env-home-directory "~/opt/anaconda3/"
+            conda-env-autoactivate-mode t)
      (node :variables node-add-modules-path t)
      pandoc
      prettier
@@ -365,8 +375,8 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font `("Iosevka"
                                :size ,(pcase system-type
-                                        ('darwin 13.0)
-                                        ('gnu/linux 13.0))
+                                        ('darwin 14.0)
+                                        ('gnu/linux 14.0))
                                :weight normal
                                :width normal)
 
@@ -614,6 +624,7 @@ See the header of this file for more information."
                        "docsets"
                        "projectile-custom"
                        "ess-custom"
+                       "python-custom"
                        "tabbar-custom"
                        "treemacs-custom"
                        "theme-custom"))
@@ -739,6 +750,9 @@ $0")
     (define-key transient-edit-map   (kbd "<escape>") #'transient-quit-one)
     (define-key transient-sticky-map (kbd "<escape>") #'transient-quit-seq))
 
+  (with-eval-after-load 'company
+    (define-key company-mode-map (kbd "M-p") 'company-complete))
+
   ;; Shell
   (setq terminal-here-terminal-command (pcase system-type
                                          ('darwin '("open" "-a" "Alacritty.app"))
@@ -778,6 +792,7 @@ before packages are loaded."
   (custom/treemacs-config)
   (custom/theme-config)
   (custom/ess-config)
+  (custom/python-config)
   (custom/projectile-config)
 
   ;; workaround for frame transparency
