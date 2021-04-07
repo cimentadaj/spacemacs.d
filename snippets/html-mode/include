@@ -1,6 +1,6 @@
 # name: include
 # key: include
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 {% include '`(f-relative (read-file-name "Filename: "))`' with {

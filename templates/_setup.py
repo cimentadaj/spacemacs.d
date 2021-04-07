@@ -45,8 +45,8 @@ setup(
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
     url='',  # Optional
 
-    author='Seong Yong-ju',
-    author_email='sei40kr@gmail.com',
+    author='Jorge Cimentada',
+    author_email='cimentadaj@gmail.com',
 
     # Classifiers help users find your project by categorizing it.
     #

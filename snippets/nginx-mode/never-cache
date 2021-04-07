@@ -1,6 +1,6 @@
 # name: Never cache
 # key: never-cache
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 expires -1;

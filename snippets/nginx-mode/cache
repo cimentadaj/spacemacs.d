@@ -1,6 +1,6 @@
 # name: Contents caching
 # key: cache
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 expires max;

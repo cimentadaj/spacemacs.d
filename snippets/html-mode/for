@@ -1,6 +1,6 @@
 # name: for loop
 # key: for
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 {% for ${1:var} in ${2:stuff} %}
