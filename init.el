@@ -103,7 +103,9 @@ values."
                  javascript-backend 'lsp
                  javascript-repl 'nodejs
                  javascript-lsp-linter nil)
-     (json :variables json-fmt-tool 'prettier)
+     (json :variables
+           json-fmt-tool 'prettier
+           json-backend 'lsp)
      latex
      lua
      major-modes
@@ -115,9 +117,7 @@ values."
              python-fill-column 99
              python-formatter 'yapf
              python-format-on-save t
-             python-sort-imports-on-save t
-             python-pipenv-activate t
-             python-formatter 'black)
+             python-sort-imports-on-save t)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
@@ -186,9 +186,10 @@ values."
      ;;   ranger-show-hidden t)
      (restclient :variables restclient-use-org t)
      (shell :variables
-            shell-default-shell 'eshell
-            shell-default-height 30
-            shell-default-position 'bottom)
+            shell-default-shell 'shell
+            shell-default-term-shell "/bin/zsh"
+            shell-default-height 40
+            shell-default-position 'right)
      systemd
      vagrant
      (xclipboard :variables xclipboard-enable-cliphist t)
@@ -609,6 +610,7 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
+
   )
 
 (defun custom//load-all ()
@@ -640,6 +642,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
   (custom//load-all)
 
   (custom/flycheck-init)
@@ -803,18 +806,18 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(flycheck-lintr-linters
-   "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(treemacs-root-face ((t (:inherit font-lock-string-face :weight bold :height 1.0)))))
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(evil-want-Y-yank-to-eol nil)
+   '(flycheck-lintr-linters
+     "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)"))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(treemacs-root-face ((t (:inherit font-lock-string-face :weight bold :height 1.0)))))
+  )

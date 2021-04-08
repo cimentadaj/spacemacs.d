@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Seong Yong-ju",
+  "author": "Jorge Cimentada",
   "license": "MIT",
   "devDependencies": {
     "ethlint": "^1.2.5"

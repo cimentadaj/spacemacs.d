@@ -1,4 +1,4 @@
-// Copyright `(format-time-string "%Y")` Seong Yong-ju. All rights reserved.
+// Copyright `(format-time-string "%Y")` Jorge Cimentada. All rights reserved.
 
 package main
 

@@ -1,6 +1,6 @@
 # name: Secure SSL settings
 # key: ssl
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 # don’t use SSLv3

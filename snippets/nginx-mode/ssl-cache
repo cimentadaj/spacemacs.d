@@ -1,6 +1,6 @@
 # name: SSL Cache
 # key: ssl-cache
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 ssl_session_cache shared:SSL:${1:10m};

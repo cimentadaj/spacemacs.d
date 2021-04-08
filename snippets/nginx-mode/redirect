@@ -1,6 +1,6 @@
 # name: Redirection
 # key: redirect
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 return 301 ${1:redirect_to};

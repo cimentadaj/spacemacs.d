@@ -1,6 +1,6 @@
 # name: macro
 # key: macro
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# contributor: Jorge Cimentada <cimentadaj@gmail.com>
 # --
 
 {% macro $1(${2:args}) %}

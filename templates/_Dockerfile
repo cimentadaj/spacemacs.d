@@ -1,6 +1,6 @@
 FROM alpine
 
-LABEL Seong Yong-ju <sei40kr@gmail.com>
+LABEL Jorge Cimentada <cimentadaj@gmail.com>
 
 RUN addgroup -S app && \
   adduser -G app -S app && \
