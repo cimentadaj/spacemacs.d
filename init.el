@@ -179,10 +179,6 @@ values."
           lsp-ui-doc-enable nil
           lsp-ui-sideline-show-diagnostics nil)
      nginx
-     (conda :variables
-            conda-anaconda-home "~/opt/anaconda3/"
-            conda-env-home-directory "~/opt/anaconda3/"
-            conda-env-autoactivate-mode t)
      (node :variables node-add-modules-path t)
      pandoc
      prettier
@@ -373,10 +369,10 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font `("Iosevka"
+   dotspacemacs-default-font `("Source Code Pro"
                                :size ,(pcase system-type
-                                        ('darwin 14.0)
-                                        ('gnu/linux 14.0))
+                                        ('darwin 10.0)
+                                        ('gnu/linux 10.0))
                                :weight normal
                                :width normal)
 
