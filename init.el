@@ -52,7 +52,6 @@ values."
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip nil)
-     ;; helm
      ivy
      ;; Emacs
      (org :variables
@@ -88,6 +87,7 @@ values."
           ess-ask-for-ess-directory nil
           ess-default-style 'RStudio
           ess-eval-visibly t)
+     polymode
      (go :variables
          go-backend 'lsp
          go-format-before-save t
@@ -219,6 +219,7 @@ values."
      (emacs-atcoder-tools :location local)
      treemacs-persp
      tabbar
+     poly-R
      )
 
    ;; A list of packages that cannot be updated.
@@ -610,7 +611,9 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
+  ;; Create venv in project with pipenv
   (setenv "PIPENV_VENV_IN_PROJECT" "1")
+  ;; Avois a lot of text :)
   (setenv "PIPENV_VERBOSITY" "-1")
   )
 
@@ -807,18 +810,20 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(evil-want-Y-yank-to-eol nil)
-   '(flycheck-lintr-linters
-     "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)"))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(treemacs-root-face ((t (:inherit font-lock-string-face :weight bold :height 1.0)))))
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-lintr-linters
+   "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)")
+ '(package-selected-packages
+   '(poly-R zenburn-theme zen-and-art-theme zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode wolfram-mode winum white-sand-theme which-key wgrep web-mode web-beautify vterm volatile-highlights vmd-mode vi-tilde-fringe vala-snippets vala-mode vagrant-tramp vagrant uuidgen use-package undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toml-mode toc-org tide thrift terminal-here tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit tabbar systemd symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection string-edit stan-mode sqlup-mode sql-indent sphinx-doc spaceline-all-the-icons spacegray-theme soothe-theme solidity-flycheck solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smex smeargle slim-mode shell-pop seti-theme seeing-is-believing scss-mode scala-mode scad-mode sbt-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode ron-mode robe rjsx-mode reverse-theme restart-emacs rebecca-theme rbenv rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme racer qml-mode pytest pyenv-mode py-isort purple-haze-theme pug-mode projectile-rails professional-theme prettier-js poetry play-crystal plantuml-mode planet-theme pkgbuild-mode pippel pipenv pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme password-generator paradox pandoc-mode ox-pandoc ox-gfm overseer orgit organic-green-theme org-superstar org-sticky-header org-rich-yank org-re-reveal org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-restclient ob-http ob-crystal npm-mode nodejs-repl noctilux-theme nginx-mode naquadah-theme nameless mvn mustang-theme multi-term multi-line move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minitest minimal-theme meghanada maven-test-mode matlab-mode material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-python-ms lsp-pyright lsp-origami lsp-metals lsp-latex lsp-java lsp-ivy lsp-haskell lorem-ipsum logcat livid-mode live-py-mode link-hint light-soap-theme kaolin-themes json-navigator js2-refactor js-doc jinja2-mode jbeans-theme jazz-theme ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra ivy-avy ir-black-theme insert-shebang inkpot-theme inf-crystal indent-guide importmagic impatient-mode hybrid-mode hungry-delete hoon-mode hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-make hc-zenburn-theme haskell-snippets gruvbox-theme gruber-darker-theme groovy-mode groovy-imports grip-mode grandshell-theme gotham-theme google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh-md gandalf-theme fuzzy forge font-lock+ flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-popup-tip flycheck-package flycheck-haskell flycheck-elsa flycheck-crystal flycheck-bashate flx-ido floobits flatui-theme flatland-theme fish-mode feature-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-snipe evil-org evil-numbers evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-commentary evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help enh-ruby-mode emr emmet-mode elisp-slime-nav elfeed-org elfeed-goodies ein editorconfig ebuild-mode dumb-jump dracula-theme dotenv-mode doom-themes doom-modeline dockerfile-mode docker django-theme disaster dired-quick-sort diminish diff-hl devdocs deft define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dante dakrone-theme cython-mode cyberpunk-theme csv-mode cpp-auto-include counsel-projectile counsel-dash counsel-css company-ycmd company-web company-shell company-rtags company-restclient company-reftex company-math company-lua company-go company-cabal company-c-headers company-auctex company-ansible company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode cmm-mode cmake-mode cmake-ide clues-theme cliphist clean-aindent-mode chruby chocolate-theme cherry-blossom-theme centered-cursor-mode ccls cargo busybee-theme bundler bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk attrap arduino-mode apropospriate-theme anti-zenburn-theme ansible-doc ansible ample-zen-theme ample-theme ameba alect-themes aggressive-indent afternoon-theme add-node-modules-path ace-link ac-ispell)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(treemacs-root-face ((t (:inherit font-lock-string-face :weight bold :height 1.0)))))
+)
