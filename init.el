@@ -373,7 +373,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font `("Source Code Pro"
                                :size ,(pcase system-type
-                                        ('darwin 10.0)
+                                        ('darwin 13.0)
                                         ('gnu/linux 10.0))
                                :weight normal
                                :width normal)
