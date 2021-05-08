@@ -111,8 +111,11 @@ values."
      major-modes
      (markdown :variables markdown-live-preview-engine 'vmd)
      plantuml
+     (conda :variables conda-anaconda-home "~/opt/anaconda3/")
      (python :variables
              python-backend 'lsp
+             python-shell-interpreter "ipython"
+             python-shell-interpreter-args "--simple-prompt --pprint"
              ;; python-tab-width 4
              python-fill-column 99
              python-formatter 'yapf
@@ -210,6 +213,7 @@ values."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
+     jedi
      flycheck-popup-tip
      (helm-gitignore :location local)
      (react-snippets :location local)
@@ -647,6 +651,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
+  (setenv "WORKON_HOME" "~/opt/anaconda3/envs")
   (custom//load-all)
 
   (custom/flycheck-init)
@@ -673,6 +678,7 @@ $0")
     (set (make-local-variable 'yas-indent-line) 'fixed))
   (spacemacs/add-to-hooks #'custom//turn-off-yas-auto-indent
                           '(haskell-mode-hook python-mode-hook sass-mode-hook))
+
 
   ;; Go
   (setq gofmt-command "goimports"
