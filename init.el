@@ -114,6 +114,8 @@ values."
      (conda :variables conda-anaconda-home "~/opt/anaconda3/")
      (python :variables
              python-backend 'lsp
+             python-lsp-server 'mspyls
+             python-lsp-git-root "~/repositories/python-language-server/"
              python-shell-interpreter "ipython"
              python-shell-interpreter-args "--simple-prompt --pprint"
              ;; python-tab-width 4
