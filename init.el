@@ -562,6 +562,13 @@ See the header of this file for more information."
   (setenv "PIPENV_VERBOSITY" "-1")
   (spacemacs/load-spacemacs-env))
 
+
+(defun custom//load-all ()
+  (dolist (file-name '("ess-custom"
+                       "python-custom"))
+    (load (concat dotspacemacs-directory file-name))))
+
+
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
@@ -593,6 +600,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  (custom//load-all)
+  (custom/ess-config)
+  (custom/python-config)
 
   ;; Projectile
   (projectile-discover-projects-in-directory "~/repositories/")
