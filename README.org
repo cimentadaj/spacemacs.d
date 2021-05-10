@@ -1,0 +1,7 @@
+#+TITLE: spacemacs.d
+
+* Manual Installation
+
+  #+BEGIN_SRC sh
+    git clone https://github.com/cimentadaj/spacemacs.d.git ~/.spacemacs.d
+  #+END_SRC
