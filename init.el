@@ -504,7 +504,7 @@ It should only modify the values of Spacemacs settings."
    ;; performance issues, instead of calculating the frame title by
    ;; `spacemacs/title-prepare' all the time.
    ;; (default "%I@%S")
-   dotspacemacs-frame-title-format "%I@%S"
+   dotspacemacs-frame-title-format "Spacemacs@%t"
 
    ;; Format specification for setting the icon title format
    ;; (default nil - same as frame-title-format)
@@ -605,7 +605,12 @@ before packages are loaded."
   (custom/ess-config)
   (custom/python-config)
 
+
+  ;; Theme
+  (setq doom-modeline-buffer-file-name-style #'truncate-upto-root)
+
   ;; Projectile
+  (spacemacs/set-leader-keys "ps" 'counsel-projectile-ag)
   (projectile-discover-projects-in-directory "~/repositories/")
 
   ;; workaround for frame transparency
