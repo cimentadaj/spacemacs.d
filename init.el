@@ -566,7 +566,8 @@ See the header of this file for more information."
 
 (defun custom//load-all ()
   (dolist (file-name '("ess-custom"
-                       "python-custom"))
+                       "python-custom"
+                       "projectile-custom"))
     (load (concat dotspacemacs-directory file-name))))
 
 
@@ -605,18 +606,17 @@ before packages are loaded."
   (custom//load-all)
   (custom/ess-config)
   (custom/python-config)
+  (custom/projectile-config)
 
 
   ;; Theme
   (setq doom-modeline-buffer-file-name-style #'truncate-upto-root)
 
-  ;; Projectile
-  (spacemacs/set-leader-keys "ps" 'counsel-projectile-ag)
-  (projectile-discover-projects-in-directory "~/repositories/")
 
   ;; workaround for frame transparency
   (spacemacs/enable-transparency)
-  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency))
+  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency)
+  )
 
 
 ;; Do not write anything past this comment. This is where Emacs will
