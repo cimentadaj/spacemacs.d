@@ -567,7 +567,8 @@ See the header of this file for more information."
 (defun custom//load-all ()
   (dolist (file-name '("ess-custom"
                        "python-custom"
-                       "projectile-custom"))
+                       "projectile-custom"
+                       "blog-custom"))
     (load (concat dotspacemacs-directory file-name))))
 
 
@@ -607,6 +608,7 @@ before packages are loaded."
   (custom/ess-config)
   (custom/python-config)
   (custom/projectile-config)
+  (custom/blog-config)
 
 
   ;; Theme
