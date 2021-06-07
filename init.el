@@ -79,6 +79,11 @@ This function should only modify configuration layer settings."
            scss-enable-lsp t
            web-fmt-tool 'prettier)
      (xclipboard :variables xclipboard-enable-cliphist t)
+     (scala :variables
+            scala-auto-treeview t
+            scala-backend 'scala-metals
+            scala-sbt-window-position 'bottom
+            scala-indent:use-javadoc-style t)
      polymode
      ;; markdown
      multiple-cursors
