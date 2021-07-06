@@ -621,6 +621,12 @@ before packages are loaded."
   ;; Theme
   (setq doom-modeline-buffer-file-name-style #'truncate-upto-root)
 
+  (savehist-mode -1)
+  ;; Adds date/time to powerline
+  (spaceline-define-segment datetime
+                            (shell-command-to-string "echo -n $(date '+%a %d %b %I:%M%p')"))
+  (spaceline-spacemacs-theme 'datetime)
+
 
   ;; workaround for frame transparency
   (spacemacs/enable-transparency)
