@@ -108,6 +108,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(poly-R
+                                      gnutls
                                       poly-markdown
                                       poly-noweb)
 
@@ -599,6 +600,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
 
+
+
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
@@ -647,9 +650,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ein:output-area-inlined-images t)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-lintr-linters
    "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)")
+ '(gnutls-trustfiles
+   '("/etc/ssl/certs/ca-certificates.crt" "/etc/pki/tls/certs/ca-bundle.crt" "/etc/ssl/ca-bundle.pem" "/usr/ssl/certs/ca-bundle.crt" "/usr/local/share/certs/ca-root-nss.crt" "/etc/ssl/cert.pem" "/etc/certs/ca-certificates.crt" "/Users/cimentadaj/zscaler.pem"))
+ '(gnutls-verify-error t)
  '(package-selected-packages
    '(tern npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags helm helm-core ggtags counsel-gtags add-node-modules-path csv-mode yaml-mode poly-R poly-noweb poly-markdown polymode yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep vterm volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection string-edit sphinx-doc spaceline-all-the-icons smex smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pyenv-mode py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nose nameless multi-term multi-line magit-section macrostep lsp-ui lsp-pyright lsp-origami lsp-ivy lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fuzzy forge font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word dap-mode cython-mode counsel-projectile company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-compile async aggressive-indent ace-link ac-ispell)))
 (custom-set-faces
