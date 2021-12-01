@@ -81,9 +81,11 @@ This function should only modify configuration layer settings."
      (xclipboard :variables xclipboard-enable-cliphist t)
      (scala :variables
             scala-auto-treeview t
-            scala-backend 'scala-metals
+            scala-enable-eldoc t
+            scala-auto-insert-asterisk-in-comments t
             scala-sbt-window-position 'bottom
-            scala-indent:use-javadoc-style t)
+            scala-backend 'scala-metals
+            scala-auto-start-backend t)
      polymode
      ;; markdown
      multiple-cursors
@@ -616,7 +618,6 @@ before packages are loaded."
   (custom/python-config)
   (custom/projectile-config)
   (custom/blog-config)
-
 
   ;; Theme
   (setq doom-modeline-buffer-file-name-style #'truncate-upto-root)
