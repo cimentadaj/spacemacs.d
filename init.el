@@ -654,8 +654,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(ein:output-area-inlined-images t)
  '(evil-want-Y-yank-to-eol nil)
- '(flycheck-lintr-linters
-   "with_defaults(trailing_blank_lines_linter = NULL, object_usage_linter = NULL, camel_case_linter = NULL, object_name_linter = NULL)")
  '(gnutls-trustfiles
    '("/etc/ssl/certs/ca-certificates.crt" "/etc/pki/tls/certs/ca-bundle.crt" "/etc/ssl/ca-bundle.pem" "/usr/ssl/certs/ca-bundle.crt" "/usr/local/share/certs/ca-root-nss.crt" "/etc/ssl/cert.pem" "/etc/certs/ca-certificates.crt" "/Users/cimentadaj/zscaler.pem"))
  '(gnutls-verify-error t)

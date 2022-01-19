@@ -49,6 +49,31 @@
       (comint-clear-buffer)
       (switch-to-buffer-other-window first-buffer)))
 
+
+  (defun save-lintr (lintr-path)
+    ;; create new buffer, do things, then write to file at fpath
+    (with-temp-file lintr-path
+      (insert "
+linters:with_defaults(
+  line_length_linter = NULL, # Make sure you don't change any parenthesis nor trailing blank lines, lintr needs this EXACT format for linting. Don't even move this comment line
+  object_name_linter = NULL,
+  object_usage_linter = NULL,
+  camel_case_linter = NULL,
+  object_snake_case_linter = NULL,
+  object_name_linter = NULL,
+  commented_code_linter = NULL)
+exclusions:list(
+  'inst/',
+  'man/')
+
+"
+              )
+      )
+    )
+
+  (save-lintr "~/.lintr")
+
+
   (defun R-scratch ()
     (interactive)
     (progn
