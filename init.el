@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(csv
+   '(javascript
+     csv
      yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -52,9 +53,9 @@ This function should only modify configuration layer settings."
              python-shell-interpreter-args "--simple-prompt --pprint"
              ;; python-tab-width 4
              python-fill-column 99
-             python-formatter 'yapf
-             python-format-on-save t
-             python-sort-imports-on-save t
+             python-formatter 'black
+             python-format-on-save nil
+             python-sort-imports-on-save nil
              python-pipenv-activate t)
      ipython-notebook
      (ess :variables
@@ -596,6 +597,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq create-lockfiles nil
         select-enable-clipboard t)
 
+  (setq ein:worksheet-enable-undo t)
+
   ;; Company
   (with-eval-after-load 'company
     (define-key company-mode-map (kbd "M-p") 'company-complete))
@@ -625,7 +628,10 @@ before packages are loaded."
   (custom/blog-config)
 
   ;; Theme
-  (setq doom-modeline-buffer-file-name-style #'truncate-upto-root)
+  (setq doom-modeline-buffer-file-name-style #'file-name)
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-buffer-state-icon nil)
+
 
   (savehist-mode -1)
   ;; Adds date/time to powerline
