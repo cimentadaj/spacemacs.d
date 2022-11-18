@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(csv
+   '(rust
+     csv
      yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -59,9 +60,11 @@ This function should only modify configuration layer settings."
      ipython-notebook
      (ess :variables
           ess-r-backend 'lsp
+          inferior-R-args "--no-save"
           ess-disable-underscore-assign t
           ess-ask-for-ess-directory nil
           ess-default-style 'RStudio
+          ess-history-file nil
           ess-assign-key "C-<"
           ess-eval-visibly t)
      (docker :variables
@@ -660,7 +663,7 @@ This function is called at the very end of Spacemacs initialization."
  '(inferior-R-args "--no-save --quiet")
  '(lsp-julia-default-environment "~/.julia/environments/v1.4")
  '(package-selected-packages
-   '(exec-path-from-shell lsp-julia julia-repl julia-mode tern npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags helm helm-core ggtags counsel-gtags add-node-modules-path csv-mode yaml-mode poly-R poly-noweb poly-markdown polymode yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep vterm volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection string-edit sphinx-doc spaceline-all-the-icons smex smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pyenv-mode py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nose nameless multi-term multi-line magit-section macrostep lsp-ui lsp-pyright lsp-origami lsp-ivy lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fuzzy forge font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word dap-mode cython-mode counsel-projectile company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-compile async aggressive-indent ace-link ac-ispell)))
+   '(toml-mode ron-mode racer rust-mode flycheck-rust cargo exec-path-from-shell lsp-julia julia-repl julia-mode tern npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags helm helm-core ggtags counsel-gtags add-node-modules-path csv-mode yaml-mode poly-R poly-noweb poly-markdown polymode yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep vterm volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection string-edit sphinx-doc spaceline-all-the-icons smex smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pyenv-mode py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nose nameless multi-term multi-line magit-section macrostep lsp-ui lsp-pyright lsp-origami lsp-ivy lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fuzzy forge font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word dap-mode cython-mode counsel-projectile company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-compile async aggressive-indent ace-link ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
