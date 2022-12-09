@@ -56,7 +56,9 @@ This function should only modify configuration layer settings."
              python-formatter 'black
              python-format-on-save nil
              python-sort-imports-on-save nil
+             dap-python-debugger 'debugpy
              python-pipenv-activate t)
+     (yaml :variables yaml-enable-lsp t)
      ipython-notebook
      (ess :variables
           ess-r-backend 'lsp
